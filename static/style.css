@@ -1,0 +1,131 @@
+
+.login-section {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+}
+
+.login-form {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-header {
+    text-align: center;
+}
+
+.login-header h2 {
+    color: #2c6e74;
+    font-size: 26px;
+    margin-bottom: 5px;
+}
+
+.system-name {
+    color: #4fb8c8;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.subtext {
+    color: #777;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 42px 14px 45px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #4fb8c8;
+}
+
+.eye-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+}
+
+.options-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #555;
+}
+
+.remember-me input {
+    width: auto;
+}
+
+.forgot-link {
+    color: #4fb8c8;
+    text-decoration: none;
+}
+
+.signin-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(90deg, #4fb8c8, #36a0b0);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.signin-btn:hover {
+    background: linear-gradient(90deg, #36a0b0, #2c8f9e);
+}
+
+.error-msg {
+    color: #d63031;
+    background: #ffebee;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.safety-note {
+    text-align: center;
+    margin-top: 25px;
+    color: #777;
+    font-size: 14px;
+}

@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Complaint - Barangay System</title>
+    <link rel="stylesheet" href="resident.css"/>    
+</head>
+<body>
+    <div class="container">
+        <div class="form-card">
+            <h2>Submit a Complaint</h2>
+            <p class="subtitle">Fill out the form below to report an issue in your barangay</p>
+
+            <div id="error-msg" class="error-msg" style="display: none;"></div>
+
+            <form id="complaint-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="full_name">Your Full Name *</label>
+                    <input type="text" id="full_name" name="full_name" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact_number">Contact Number *</label>
+                    <input type="text" id="contact_number" name="contact_number" placeholder="09XX-XXX-XXXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address / Purok *</label>
+                    <input type="text" id="address" name="address" placeholder="Your complete address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="complaint_type">Type of Complaint *</label>
+                    <select id="complaint_type" name="complaint_type" required>
+                        <option value="">-- Select type --</option>
+                        <option value="Noise Disturbance">Noise Disturbance</option>
+                        <option value="Garbage Disposal">Garbage Disposal</option>
+                        <option value="Pet Nuisance">Pet Nuisance</option>
+                        <option value="Property Dispute">Property Dispute</option>
+                        <option value="Verbal Altercation">Verbal Altercation</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description of Complaint *</label>
+                    <textarea id="description" name="description" rows="5" placeholder="Describe what happened, when, and where..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Upload Photo / Evidence *</label>
+                    <div class="upload-box">
+                        <input type="file" id="photo" name="photo" accept="image/*" onchange="previewImage(event)">
+                        <p>Click to upload a photo<br><small>JPG, PNG only — Max 5MB</small></p>
+                    </div>
+                    <div id="photo-preview" style="display: none; margin-top: 10px;">
+                        <img id="preview-img" src="" alt="Preview" style="max-width: 100%; max-height: 200px; border-radius: 6px;">
+                    </div>
+                    <p id="photo-note" class="note">* Photo is REQUIRED before submitting</p>
+                </div>
+
+                <button type="submit" id="submit-btn" class="submit-btn">SUBMIT COMPLAINT</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 998;"></div>
+    <div id="success-msg" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 40px 50px; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); text-align: center; z-index: 999;">
+        <div style="font-size: 50px;">✅</div>
+        <h3 style="color: #2c6e74; margin: 15px 0 10px;">Thank You!</h3>
+        <p style="color: #555; font-size: 16px; line-height: 1.6;">Thank you for submitting your complaint.<br>We will review it shortly.<br><br>God bless you.</p>
+        <button onclick="closeMessage()" style="margin-top: 20px; padding: 10px 25px; background: #4fb8c8; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">OK</button>
+    </div>
+
+    <script src="{% static "script_resident.js" %}"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        {% for message in messages %}
+            {% if message.tags == 'success' and message.message == 'COMPLAINT_SUBMITTED' %}
+                if (typeof showSuccessMessage !== 'undefined') {
+                    showSuccessMessage();
+                }
+            {% endif %}
+        {% endfor %}
+    });
+    </script>
+</body>
+</html>

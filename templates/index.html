@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barangay Complaint Monitoring System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #e3f4f6, #d4eff2);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .home-container {
+            text-align: center;
+        }
+        h1 {
+            color: #1a3b5d;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .system-tag {
+            color: #4fb8c8;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .welcome-msg {
+            color: #666;
+            font-size: 17px;
+            margin-bottom: 40px;
+        }
+        .signin-link {
+            display: inline-block;
+            padding: 15px 50px;
+            background: linear-gradient(90deg, #4fb8c8, #36a0b0);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .signin-link:hover {
+            background: linear-gradient(90deg, #36a0b0, #2c8f9e);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="home-container">
+        <h1>BARANGAY COMPLAINT</h1>
+        <p class="system-tag">Monitoring System</p>
+        <p class="welcome-msg">Welcome — Please sign in to access the system</p>
+        
+        <a href="{% url 'login' %}" class="signin-link">🔐 SIGN IN</a>
+    </div>
+</body>
+</html>

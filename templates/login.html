@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Barangay Complaint Monitoring System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #e3f4f6, #d4eff2);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .login-section {
+            width: 100%;
+            max-width: 420px;
+            padding: 20px;
+        }
+        .login-form {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #2c6e74;
+            font-size: 26px;
+            margin-bottom: 5px;
+        }
+        .system-name {
+            text-align: center;
+            color: #4fb8c8;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+        .error-msg {
+            color: #d63031;
+            background: #ffebee;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .input-group {
+            position: relative;
+            margin-bottom: 18px;
+        }
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 18px;
+        }
+        input {
+            width: 100%;
+            padding: 14px 14px 14px 45px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #4fb8c8;
+        }
+        .eye-icon {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #888;
+        }
+        .options-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        .remember-me {
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .forgot-link {
+            color: #4fb8c8;
+            text-decoration: none;
+        }
+        .signin-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #4fb8c8, #36a0b0);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .signin-btn:hover {
+            background: linear-gradient(90deg, #36a0b0, #2c8f9e);
+        }
+        .footer-text {
+            text-align: center;
+            margin-top: 25px;
+            color: #777;
+            font-size: 14px;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .back-link a {
+            color: #4fb8c8;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-section">
+        <div class="login-form">
+            <h2>BARANGAY<br>COMPLAINT</h2>
+            <p class="system-name">Monitoring System</p>
+            <p class="subtitle">Please sign in to continue</p>
+            
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="error-msg">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="input-group">
+                    <span class="input-icon">👤</span>
+                    <input type="text" name="username" id="username" placeholder="Username / Email" required>
+                </div>
+                
+                <div class="input-group">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <span class="eye-icon" onclick="togglePassword()">👁</span>
+                </div>
+                
+                <div class="options-row">
+                    <label class="remember-me">
+                        <input type="checkbox"> Remember me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="signin-btn">SIGN IN</button>
+            </form>
+            
+            <p class="footer-text">"Together we can build a stronger and safer community."</p>
+            <div class="back-link">
+                <a href="/">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const pwd = document.getElementById('password');
+            pwd.type = pwd.type === 'password' ? 'text' : 'password';
+        }
+    </script>
+</body>
+</html>

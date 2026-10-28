@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Barangay Complaint Monitoring System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #e3f4f6, #d4eff2);
+            min-height: 100vh;
+        }
+        .navbar {
+            background: white;
+            padding: 18px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar h2 {
+            color: #2c6e74;
+            font-size: 22px;
+        }
+        .logout-btn {
+            padding: 10px 25px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .welcome-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .welcome-card h1 {
+            color: #4fb8c8;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .welcome-card p {
+            color: #666;
+            font-size: 17px;
+        }
+        .admin-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #4fb8c8, #36a0b0);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .card h3 {
+            color: #2c6e74;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .card p {
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <h2>📊 BARANGAY COMPLAINT MONITORING SYSTEM</h2>
+        <a href="{% url 'login' %}" id="logoutBtn" class="logout-btn">🚪 Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="welcome-card">
+            <h1>Welcome, Administrator!</h1>
+            <p>You are now logged in to the Barangay Complaint Monitoring System</p>
+            <div class="admin-badge">🔓 ADMINISTRATOR DASHBOARD</div>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h3>📋 Complaints</h3>
+                <p>View and manage all complaints</p>
+            </div>
+            <div class="card">
+                <h3>👥 Users</h3>
+                <p>Manage system accounts</p>
+            </div>
+            <div class="card">
+                <h3>📊 Reports</h3>
+                <p>View system statistics</p>
+            </div>
+            <div class="card">
+                <h3>⚙️ Settings</h3>
+                <p>Configure system settings</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Execution -->
+    <script>
+      // Check admin login session
+      const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+      const userRole = sessionStorage.getItem('userRole');
+
+      if (isLoggedIn !== 'true' || userRole !== 'admin') {
+        window.location.replace('/login/');
+      }
+
+      // Handle logout securely
+      document.getElementById('logoutBtn')?.addEventListener('click', function (e) {
+        e.preventDefault();
+        sessionStorage.clear();
+        window.location.href = this.href;
+      });
+    </script>
+</body>
+</html>
